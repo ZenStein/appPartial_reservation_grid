@@ -1,25 +1,5 @@
-//function gridMonthHeader(yearMonth) {
-//	var elem = [];
-//	var mon = yearMonth.month - 1
-//	var d = new Date(yearMonth.year, mon)
-//	var dayName = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-//	while(d.getMonth() == mon) {
-//		elem.push({field:(mon+1) + ' / ' + d.getDate(),name:(mon+1) + ' / ' + d.getDate() + '  ' + dayName[d.getDay()] + ' ', cellClass: function(grid, row, col, rowRenderIndex, colRenderIndex) {
-//				var reg = /(friday) | (saturday)/i;
-//				var found = col.name.match(reg);
-//				if(found){
-//					return 'blue'
-//				}
-//			},year: d.getFullYear()
-//		})
-//		d.setDate(d.getDate()+1)
-//	}
-//	console.log ('elem');console.log ( elem ); //marker
-//	return elem;
-//}
 
-
-angular.module('main',['ui.grid'])
+	angular.module('main',['ngTouch', 'ui.grid', 'ui.grid.pinning'])
 .factory("flexDate", [function(){
    var O = {}
 	 var now = Date.now()
@@ -27,7 +7,7 @@ angular.module('main',['ui.grid'])
 	 d.setDate(1)
 	var dayName = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 	O.gridMonthHeader = function() {
-		var elem = [];
+		var elem = [{name:'Room', field:'roomNumber', pinnedLeft:true, width:100 }];
 		var mon = d.getMonth()
 		while(d.getMonth() == mon) {
 			elem.push({field:(mon+1) + ' / ' + d.getDate(),name:(mon+1) + ' / ' + d.getDate() + '  ' + dayName[d.getDay()] + ' ', cellClass: function(grid, row, col, rowRenderIndex, colRenderIndex) {
@@ -36,7 +16,8 @@ angular.module('main',['ui.grid'])
 					if(found){
 						return 'blue'
 					}
-				},year: d.getFullYear()
+				},year: d.getFullYear(),
+				width:100
 			})
 			d.setDate(d.getDate()+1)
 		}
@@ -76,7 +57,7 @@ return O;
 		$scope.gridOptions.columnDefs = gridHelp.shiftMonth(direction)
 	}
 
-  $scope.gridOptions.data = [{'2 / 1': 'this is a test'}];
+  $scope.gridOptions.data = [{roomNumber: 1 , '2 / 1': 'booked 1'},{roomNumber: 2 , '2 / 1': 'booked 2'},{roomNumber: 3 , '2 / 1': 'booked 3'}];
 
 }]);
 
