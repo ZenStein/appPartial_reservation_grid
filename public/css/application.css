@@ -3,6 +3,7 @@
   width: 800px;
   padding: 0px 20px 20px 20px;
   border: 1px dotted black;
+  overflow: scroll;
 }
 
 .container h1 {
@@ -72,4 +73,29 @@ form.quirks {
   text-align: right;
   margin-right: 20px;
   width: 200px;
+}
+
+.myGrid {
+    width: 3000px;
+    height: 250px;
+  }
+
+/*.myGrid .ui-grid-header-cell {*/
+  /*height: 60px;*/
+  /**/
+/*}*/
+
+.ui-grid-header-cell .ui-grid-cell-contents {
+  text-align: center;
+  height: 60px;
+  width:50px;
+  white-space: normal;
+  -ms-text-overflow: clip;
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  overflow: visible;
+}
+.blue{
+  color: blue;
+  background-color: cornflowerblue !important;
 }
